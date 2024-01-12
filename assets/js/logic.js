@@ -7,9 +7,12 @@ var questionTitle_id = document.querySelector("#question-title");
 var choices_div = document.querySelector("#choices");
 var answerStatus_div = document.querySelector("#answer-status");
 
+var timee = document.querySelector("#time");
+
 
 // Initialise variables
 let questionNo = 0;
+let secondsLeft = 20;
 
 
 start_button.addEventListener("click", function() {
@@ -25,6 +28,8 @@ function startQuiz() {
     // Show #questions
     questions_div.classList.remove('hide');
     questions_div.classList.add('show');  
+
+    setTime();
 
     // Show first question
     showQuestion();   
@@ -76,3 +81,39 @@ function displayNext() {
         showQuestion();
     }  
  }
+
+
+ function setTime() {
+  // Sets interval in variable
+    var timerInterval = setInterval(function() {
+
+    if (secondsLeft<=0) {
+      secondsLeft = 0
+    }
+    else
+    {
+      secondsLeft--;
+    }
+
+    timee.textContent = secondsLeft;
+
+    if(secondsLeft <= 0) {
+      // Stops execution of action at set interval
+      clearInterval(timerInterval);
+      // alert("Time up!")
+      timeUp();
+    }
+
+  }, 1000);
+}
+
+function setTime() {
+    // Sets interval in variable
+    var timerInterval = setInterval(function() {
+
+    secondsLeft--;
+    timee.textContent = secondsLeft;
+}, 1000);
+}
+  
+    
