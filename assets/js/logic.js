@@ -5,6 +5,8 @@ var startScreen_div = document.querySelector("#start-screen");
 var questions_div = document.querySelector("#questions");
 var questionTitle_id = document.querySelector("#question-title");
 var choices_div = document.querySelector("#choices");
+var answerStatus_div = document.querySelector("#answer-status");
+
 
 // Initialise variables
 let questionNo = 0;
@@ -31,19 +33,30 @@ function startQuiz() {
 
 
 function showQuestion() {
-  
     // Display Question
     questionTitle_id.textContent = questions[questionNo].question;
-  
+
     // Initialise to blank in case there are buttons currently displayed
     choices_div.innerHTML = '';
-  
+
     // Displays possible answers as buttons
     questions[questionNo].choices.forEach((choice, index) => {
-        const button = document.createElement('button');
-        button.textContent = choice;
-        choices.appendChild(button);
+    const button = document.createElement('button');
+    button.textContent = choice;
+    button.addEventListener('click', () => checkAnswer(index));
+    choices.appendChild(button);
     });
+}
   
-  }
-  
+
+function checkAnswer(choiceIndex) {
+    var userAnswer = questions[questionNo].choices[choiceIndex];
+
+    if (questions[questionNo].answer === userAnswer) {
+        answerStatus_div.textContent = "Correct";
+    }
+    else {
+        answerStatus_div.textContent = "Incorrect";      
+    } 
+}
+
