@@ -8,6 +8,7 @@ var choices_div = document.querySelector("#choices");
 var answerStatus_div = document.querySelector("#answer-status");
 
 var timee = document.querySelector("#time");
+var endScreen_div = document.querySelector("#end-screen");
 
 
 // Initialise variables
@@ -115,7 +116,28 @@ function setTime() {
 
     secondsLeft--;
     timee.textContent = secondsLeft;
+
+    if(secondsLeft <= 0) {
+        // Stops execution of action at set interval
+        clearInterval(timerInterval);
+        // alert("Time up!")
+        timeUp();
+      }
+  
 }, 1000);
 }
   
-    
+
+function timeUp() {
+    // Initialise title to blank
+    questionTitle_id.textContent = "";
+
+    // Initialise to blank in case there are buttons currently displayed
+    choices.innerHTML = "";
+
+    // Initialise answerstatus to blank for correct and incorrect
+    answerStatus_div.textContent = "";
+
+    endScreen_div.classList.remove('hide');
+    endScreen_div.classList.add('show'); 
+}
