@@ -58,5 +58,21 @@ function checkAnswer(choiceIndex) {
     else {
         answerStatus_div.textContent = "Incorrect";      
     } 
+
+    // Make use of timer to wait 2 seconds
+    setTimeout(displayNext, 1000);
 }
 
+
+function displayNext() {
+    // Initialise answerStatus
+    answerStatus_div.textContent = "";
+        
+    if (questionNo < questions.length-1) {
+        // Increment questionNo variable
+        questionNo++;
+
+        // Display next question to User
+        showQuestion();
+    }  
+ }
