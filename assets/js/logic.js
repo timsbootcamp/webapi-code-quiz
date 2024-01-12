@@ -13,6 +13,7 @@ var timee = document.querySelector("#time");
 // Initialise variables
 let questionNo = 0;
 let secondsLeft = 20;
+let score = 0;
 
 
 start_button.addEventListener("click", function() {
@@ -59,6 +60,7 @@ function checkAnswer(choiceIndex) {
 
     if (questions[questionNo].answer === userAnswer) {
         answerStatus_div.textContent = "Correct";
+        score++;
     }
     else {
         answerStatus_div.textContent = "Incorrect";      
