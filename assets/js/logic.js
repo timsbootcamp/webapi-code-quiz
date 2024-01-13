@@ -11,11 +11,15 @@ var timee = document.querySelector("#time");
 var endScreen_div = document.querySelector("#end-screen");
 var finalScore_span_id = document.querySelector("#final-score");
 
+// Constants
+const subtractTime = 15;
+
 
 // Initialise variables
 let questionNo = 0;
 let secondsLeft = 20;
 let score = 0;
+
 
 
 start_button.addEventListener("click", function() {
@@ -65,7 +69,15 @@ function checkAnswer(choiceIndex) {
         score++;
     }
     else {
-        answerStatus_div.textContent = "Incorrect";      
+        answerStatus_div.textContent = "Incorrect";    
+
+        if (secondsLeft-subtractTime <0) {
+          secondsLeft = 0
+        }
+        else {
+          secondsLeft = secondsLeft-subtractTime;
+        }
+                
     } 
 
     // Make use of timer to wait 2 seconds
