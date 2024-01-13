@@ -5,12 +5,15 @@ const highscores_ol_id = document.querySelector("#highscores");
 const clear_button = document.querySelector("#clear");
 
 
+// Event Listener for 'Clear Highscores' button click event 
 clear_button.addEventListener("click", function() {
   clearHighScores();
 });
 
 
 function loadHighScores() { 
+
+  // Read scores from local storage and store in an array
   let scoresPlayers = readScoresFromLocalStorage();
 
   // Parse scoresPlayers array and create li
@@ -22,12 +25,14 @@ function loadHighScores() {
   
 }  
 
-function clearHighScores() {
   // Clear local storage for 'quiz-players'
+  function clearHighScores() {
   localStorage.removeItem(localStorageQuiz_Key);
   window.location.href = 'highscores.html';
 }
 
+
+// Run function to load high scores
 loadHighScores();
 
 

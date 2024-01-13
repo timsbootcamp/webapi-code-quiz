@@ -10,13 +10,17 @@ function readScoresFromLocalStorage() {
 
     var storedData = localStorage.getItem(localStorageQuiz_Key);
     if (storedData) {
+        // load data into array : scoresPlayers 
+        // after constructing the JavaScript value or object described by the string
         scoresPlayers = JSON.parse(storedData);
     }
 
+    // return array
     return scoresPlayers;
 }
 
 
+// Read from local storage based on key:
 function addNewScore(initials, score) {
 
     let scoresPlayers = readScoresFromLocalStorage();

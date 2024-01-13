@@ -22,32 +22,36 @@ const subtractTime = 15;
 
 // Initialise variables
 let questionNo = 0;
-let secondsLeft = 20;
+let secondsLeft = 76;
 let score = 0;
-
 let timerInterval;
 
-submit_button.addEventListener("click", function() {
-    addNewScore(initials.value, score);
-});
+
   
 
+// Event Listener for 'Start Quiz' button click event 
 start_button.addEventListener("click", function() {
   startQuiz();
 });
 
 
+// Event Listener for 'Submit' button click event
+submit_button.addEventListener("click", function() {
+  addNewScore(initials.value, score);
+});
 
+
+// Start Quiz ...
 function startQuiz() {
     // Hide #start-screen (ie. Hide title and Start Quiz button)
-    startScreen_div.classList.remove('show');
     startScreen_div.classList.add('hide');
+    startScreen_div.classList.remove('show');
 
     // Show #questions
     questions_div.classList.remove('hide');
     questions_div.classList.add('show');  
 
-    setTime();
+    setTimer();
 
     // Show first question
     showQuestion();   
@@ -55,8 +59,8 @@ function startQuiz() {
 
 
 
+  // Display Question x based on questions[x].question
 function showQuestion() {
-    // Display Question
     questionTitle_id.textContent = questions[questionNo].question;
 
     // Initialise to blank in case there are buttons currently displayed
@@ -64,28 +68,39 @@ function showQuestion() {
 
     // Displays possible answers as buttons
     questions[questionNo].choices.forEach((choice, index) => {
-    const button = document.createElement('button');
-    button.textContent = choice;
-    button.addEventListener('click', () => checkAnswer(index));
-    choices.appendChild(button);
+      const button = document.createElement('button');
+      button.textContent = choice;
+      button.addEventListener('click', () => checkAnswer(index));
+      choices.appendChild(button);
     });
 }
   
 
+// Check Answer is correct or incorrect
 function checkAnswer(choiceIndex) {
     var userAnswer = questions[questionNo].choices[choiceIndex];
 
     if (questions[questionNo].answer === userAnswer) {
+        // Update display to say "Correct"
         answerStatus_div.textContent = "Correct";
+        
+        // Play sound for correct
         var audio = new Audio('assets/sfx/correct.wav');
         audio.play();
+        
+        // Increment score variable
         score++;
     }
     else {
+        // Update display to say "Incorrect"
         answerStatus_div.textContent = "Incorrect";    
+
+        // Play sound for incorrect
         var audio = new Audio('assets/sfx/incorrect.wav');
         audio.play();
 
+        // Because incorrect answer then subtract x time from secondsleft
+        // Ensure secondsleft does not go into minus
         if (secondsLeft-subtractTime <0) {
           secondsLeft=0;
         }
@@ -95,6 +110,7 @@ function checkAnswer(choiceIndex) {
                 
     } 
 
+    // displayNext function after 200 milliseconds
     if (secondsLeft >0) {
       // Make use of timer to wait 200 milliseconds
       setTimeout(displayNext, 200);   
@@ -102,6 +118,7 @@ function checkAnswer(choiceIndex) {
 }
 
 
+// Display next question
 function displayNext() {
     // Initialise answerStatus
     answerStatus_div.textContent="";
@@ -115,28 +132,35 @@ function displayNext() {
     }  
     else
     {
+      // Since there are no more questions then it goes into timeUp function
       timeUp();
     }
  }
 
 
-function setTime() {
+ // Timer Interval
+function setTimer() {
     // Sets interval in variable
     timerInterval=setInterval(function() {
 
     if (secondsLeft<=1) {
-      secondsLeft=0;
+      // Since no more seconds left, then timeup function is called
+      secondsLeft=0;      
       timeUp();
     }
     else
     {
-      secondsLeft--;
+      // Decrement secondsLeft variable
+      secondsLeft--; 
     }  
+
+    // Display seconds left
     time_span_id.textContent = secondsLeft;
 }, 1000);
 }
   
 
+// Once time is up
 function timeUp() {
 
     // Stops execution of action at set interval
@@ -151,12 +175,11 @@ function timeUp() {
     // Initialise answerstatus to blank for correct and incorrect
     answerStatus_div.textContent = "";
 
+    // Show #end-screen 
     endScreen_div.classList.remove('hide');
     endScreen_div.classList.add('show'); 
 
+    // Displays final score
     finalScore_span_id.textContent = score;
 }
-
-
-
 
