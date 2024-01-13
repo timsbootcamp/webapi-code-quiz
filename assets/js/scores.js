@@ -6,13 +6,12 @@ const clear_button = document.querySelector("#clear");
 
 
 // Event Listener for 'Clear Highscores' button click event 
-clear_button.addEventListener("click", function() {
+clear_button.addEventListener("click", function () {
   clearHighScores();
 });
 
 
-function loadHighScores() { 
-
+function loadHighScores() {
   // Read scores from local storage and store in an array
   let scoresPlayers = readScoresFromLocalStorage();
 
@@ -22,11 +21,11 @@ function loadHighScores() {
     listItem.textContent = scoresPlayers[i].name + ' - ' + scoresPlayers[i].score;
     highscores_ol_id.appendChild(listItem);
   }
-  
-}  
+}
 
-  // Clear local storage for 'quiz-players'
-  function clearHighScores() {
+
+// Clear local storage for 'quiz-players'
+function clearHighScores() {
   localStorage.removeItem(localStorageQuiz_Key);
   window.location.href = 'highscores.html';
 }

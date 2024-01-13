@@ -30,163 +30,160 @@ let score = 0;
 let timerInterval;
 let hrElement;
 
-  
+
 
 // Event Listener for 'Start Quiz' button click event 
-start_button.addEventListener("click", function() {
+start_button.addEventListener("click", function () {
   startQuiz();
 });
 
 
 // Event Listener for 'Submit' button click event
-submit_button.addEventListener("click", function() {
+submit_button.addEventListener("click", function () {
   addNewScore(initials.value, score);
 });
 
 
 // Start Quiz ...
 function startQuiz() {
-    // Hide #start-screen (ie. Hide title and Start Quiz button)
-    startScreen_div.classList.add('hide');
-    startScreen_div.classList.remove('show');
+  // Hide #start-screen (ie. Hide title and Start Quiz button)
+  startScreen_div.classList.add('hide');
+  startScreen_div.classList.remove('show');
 
-    // Show #questions
-    questions_div.classList.remove('hide');
-    questions_div.classList.add('show');  
+  // Show #questions
+  questions_div.classList.remove('hide');
+  questions_div.classList.add('show');
 
-    setTimer();
+  setTimer();
 
-    // Show first question
-    showQuestion();   
-}    
-
-
-
-  // Display Question x based on questions[x].question
-function showQuestion() {
-    questionTitle_id.textContent = questions[questionNo].question;
-
-    // Initialise to blank in case there are buttons currently displayed
-    choices_div.innerHTML = '';
-
-    // Displays possible answers as buttons
-    questions[questionNo].choices.forEach((choice, index) => {
-      const button = document.createElement('button');
-      button.textContent = choice;
-      button.addEventListener('click', () => checkAnswer(index));
-      choices.appendChild(button);
-    });
+  // Show first question
+  showQuestion();
 }
-  
+
+
+
+// Display Question x based on questions[x].question
+function showQuestion() {
+  questionTitle_id.textContent = questions[questionNo].question;
+
+  // Initialise to blank in case there are buttons currently displayed
+  choices_div.innerHTML = '';
+
+  // Displays possible answers as buttons
+  questions[questionNo].choices.forEach((choice, index) => {
+    const button = document.createElement('button');
+    button.textContent = choice;
+    button.addEventListener('click', () => checkAnswer(index));
+    choices.appendChild(button);
+  });
+}
+
 
 // Check Answer is correct or incorrect
 function checkAnswer(choiceIndex) {
-    var userAnswer = questions[questionNo].choices[choiceIndex];
+  var userAnswer = questions[questionNo].choices[choiceIndex];
 
-    hrElement = document.createElement('hr');
-    answerLine_div.appendChild(hrElement);
+  hrElement = document.createElement('hr');
+  answerLine_div.appendChild(hrElement);
 
-    if (questions[questionNo].answer === userAnswer) {
-        // Update display to say "Correct"
-        answerStatus_div.textContent = "Correct";
-        
-        // Play sound for correct
-        var audio = new Audio('assets/sfx/correct.wav');
-        audio.play();
-        
-        // Increment score variable
-        score++;
+  if (questions[questionNo].answer === userAnswer) {
+    // Update display to say "Correct"
+    answerStatus_div.textContent = "Correct";
+
+    // Play sound for correct
+    var audio = new Audio('assets/sfx/correct.wav');
+    audio.play();
+
+    // Increment score variable
+    score++;
+  }
+  else {
+    // Update display to say "Incorrect"
+    answerStatus_div.textContent = "Incorrect";
+
+    // Play sound for incorrect
+    var audio = new Audio('assets/sfx/incorrect.wav');
+    audio.play();
+
+    // Because incorrect answer then subtract x time from secondsleft
+    // Ensure secondsleft does not go into minus
+    if (secondsLeft - subtractTime < 0) {
+      secondsLeft = 0;
     }
     else {
-        // Update display to say "Incorrect"
-        answerStatus_div.textContent = "Incorrect";
-               
-        // Play sound for incorrect
-        var audio = new Audio('assets/sfx/incorrect.wav');
-        audio.play();
-
-        // Because incorrect answer then subtract x time from secondsleft
-        // Ensure secondsleft does not go into minus
-        if (secondsLeft-subtractTime <0) {
-          secondsLeft=0;
-        }
-        else {
-          secondsLeft=secondsLeft-subtractTime;
-        }
-                
-    } 
-
-    // displayNext function after 200 milliseconds
-    if (secondsLeft >0) {
-      // Make use of timer to wait 200 milliseconds
-      setTimeout(displayNext, 200);   
+      secondsLeft = secondsLeft - subtractTime;
     }
+  }
+
+  // displayNext function after 200 milliseconds
+  if (secondsLeft > 0) {
+    // Make use of timer to wait 200 milliseconds
+    setTimeout(displayNext, 200);
+  }
 }
 
 
 // Display next question
 function displayNext() {
-    // Initialise answerStatus
-    answerStatus_div.textContent="";
-    answerLine_div.removeChild(hrElement);
-        
-    if (questionNo < questions.length-1) {
-        // Increment questionNo variable
-        questionNo++;
+  // Initialise answerStatus
+  answerStatus_div.textContent = "";
+  answerLine_div.removeChild(hrElement);
 
-        // Display next question to User
-        showQuestion();
-    }  
-    else
-    {
-      // Since there are no more questions then it goes into timeUp function
-      timeUp();
-    }
- }
+  if (questionNo < questions.length - 1) {
+    // Increment questionNo variable
+    questionNo++;
+
+    // Display next question to User
+    showQuestion();
+  }
+  else {
+    // Since there are no more questions then it goes into timeUp function
+    timeUp();
+  }
+}
 
 
- // Timer Interval
+// Timer Interval
 function setTimer() {
-    // Sets interval in variable
-    timerInterval=setInterval(function() {
+  // Sets interval in variable
+  timerInterval = setInterval(function () {
 
-    if (secondsLeft<=1) {
+    if (secondsLeft <= 1) {
       // Since no more seconds left, then timeup function is called
-      secondsLeft=0;      
+      secondsLeft = 0;
       timeUp();
     }
-    else
-    {
+    else {
       // Decrement secondsLeft variable
-      secondsLeft--; 
-    }  
+      secondsLeft--;
+    }
 
     // Display seconds left
     time_span_id.textContent = secondsLeft;
-}, 1000);
+  }, 1000);
 }
-  
+
 
 // Once time is up
 function timeUp() {
 
-    // Stops execution of action at set interval
-    clearInterval(timerInterval);
+  // Stops execution of action at set interval
+  clearInterval(timerInterval);
 
-    // Initialise title to blank
-    questionTitle_id.textContent = "";
+  // Initialise title to blank
+  questionTitle_id.textContent = "";
 
-    // Initialise to blank in case there are buttons currently displayed
-    choices.innerHTML = "";
+  // Initialise to blank in case there are buttons currently displayed
+  choices.innerHTML = "";
 
-    // Initialise answerstatus to blank for correct and incorrect
-    answerStatus_div.textContent = "";
+  // Initialise answerstatus to blank for correct and incorrect
+  answerStatus_div.textContent = "";
 
-    // Show #end-screen 
-    endScreen_div.classList.remove('hide');
-    endScreen_div.classList.add('show'); 
+  // Show #end-screen 
+  endScreen_div.classList.remove('hide');
+  endScreen_div.classList.add('show');
 
-    // Displays final score
-    finalScore_span_id.textContent = score;
+  // Displays final score
+  finalScore_span_id.textContent = score;
 }
 
