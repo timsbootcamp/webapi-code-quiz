@@ -72,10 +72,10 @@ function checkAnswer(choiceIndex) {
         answerStatus_div.textContent = "Incorrect";    
 
         if (secondsLeft-subtractTime <0) {
-          secondsLeft = 0
+          secondsLeft=0;
         }
         else {
-          secondsLeft = secondsLeft-subtractTime;
+          secondsLeft=secondsLeft-subtractTime;
         }
                 
     } 
@@ -89,7 +89,7 @@ function checkAnswer(choiceIndex) {
 
 function displayNext() {
     // Initialise answerStatus
-    answerStatus_div.textContent = "";
+    answerStatus_div.textContent="";
         
     if (questionNo < questions.length-1) {
         // Increment questionNo variable
@@ -110,14 +110,14 @@ function displayNext() {
     var timerInterval = setInterval(function() {
 
     if (secondsLeft<=0) {
-      secondsLeft = 0
+      secondsLeft=0;
     }
     else
     {
       secondsLeft--;
     }
 
-    time_span_id.textContent = secondsLeft;
+    time_span_id.textContent=secondsLeft;
 
     if(secondsLeft <= 0) {
       // Stops execution of action at set interval
@@ -134,7 +134,7 @@ function setTime() {
     var timerInterval=setInterval(function() {
 
     if (secondsLeft<=0) {
-      secondsLeft=0
+      secondsLeft=0;
     }
     else
     {
