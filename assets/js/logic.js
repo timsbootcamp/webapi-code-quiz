@@ -1,5 +1,10 @@
 // logic.js
 
+var audio = new Audio('correct.wav');
+audio.play();
+
+
+
 // Constants for QuerySelectors for index.html
 const start_button = document.querySelector("#start");
 const startScreen_div = document.querySelector("#start-screen");
@@ -77,6 +82,8 @@ function checkAnswer(choiceIndex) {
 
     if (questions[questionNo].answer === userAnswer) {
         answerStatus_div.textContent = "Correct";
+        var audio = new Audio('./sfx/correct.wav');
+        audio.play();
         score++;
     }
     else {
