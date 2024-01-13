@@ -7,7 +7,7 @@ var questionTitle_id = document.querySelector("#question-title");
 var choices_div = document.querySelector("#choices");
 var answerStatus_div = document.querySelector("#answer-status");
 
-var timee = document.querySelector("#time");
+var time_span_id = document.querySelector("#time");
 var endScreen_div = document.querySelector("#end-screen");
 var finalScore_span_id = document.querySelector("#final-score");
 
@@ -117,7 +117,7 @@ function displayNext() {
       secondsLeft--;
     }
 
-    timee.textContent = secondsLeft;
+    time_span_id.textContent = secondsLeft;
 
     if(secondsLeft <= 0) {
       // Stops execution of action at set interval
@@ -141,7 +141,7 @@ function setTime() {
       secondsLeft--;
     }  
 
-    timee.textContent = secondsLeft;
+    time_span_id.textContent = secondsLeft;
 
     if(secondsLeft <=0) {
         // Stops execution of action at set interval
