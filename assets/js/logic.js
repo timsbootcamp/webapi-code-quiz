@@ -1,5 +1,7 @@
 // logic.js
 
+
+
 // Constants for QuerySelectors for index.html
 const start_button = document.querySelector("#start");
 const startScreen_div = document.querySelector("#start-screen");
@@ -7,6 +9,7 @@ const questions_div = document.querySelector("#questions");
 const questionTitle_id = document.querySelector("#question-title");
 const choices_div = document.querySelector("#choices");
 const answerStatus_div = document.querySelector("#answer-status");
+const answerLine_div = document.querySelector("#answer-line");
 
 const time_span_id = document.querySelector("#time");
 const endScreen_div = document.querySelector("#end-screen");
@@ -25,7 +28,7 @@ let questionNo = 0;
 let secondsLeft = 76;
 let score = 0;
 let timerInterval;
-
+let hrElement;
 
   
 
@@ -80,6 +83,9 @@ function showQuestion() {
 function checkAnswer(choiceIndex) {
     var userAnswer = questions[questionNo].choices[choiceIndex];
 
+    hrElement = document.createElement('hr');
+    answerLine_div.appendChild(hrElement);
+
     if (questions[questionNo].answer === userAnswer) {
         // Update display to say "Correct"
         answerStatus_div.textContent = "Correct";
@@ -93,8 +99,8 @@ function checkAnswer(choiceIndex) {
     }
     else {
         // Update display to say "Incorrect"
-        answerStatus_div.textContent = "Incorrect";    
-
+        answerStatus_div.textContent = "Incorrect";
+               
         // Play sound for incorrect
         var audio = new Audio('assets/sfx/incorrect.wav');
         audio.play();
@@ -122,6 +128,7 @@ function checkAnswer(choiceIndex) {
 function displayNext() {
     // Initialise answerStatus
     answerStatus_div.textContent="";
+    answerLine_div.removeChild(hrElement);
         
     if (questionNo < questions.length-1) {
         // Increment questionNo variable
