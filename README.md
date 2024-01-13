@@ -64,7 +64,7 @@ My work is identical to the animated gif that we had to achieve. I noticed in th
 
 ## Installation
 
-The GitHub repository for my Password Generator can be found at: https://github.com/timsbootcamp/webapi-code-quiz
+The GitHub repository for my Web API : Code Quiz can be found at: https://github.com/timsbootcamp/webapi-code-quiz
 
 The source code can be cloned from the above link. 
 
@@ -73,7 +73,7 @@ The source code can be cloned from the above link.
 
 Link to my GitHub Repository: https://github.com/timsbootcamp/webapi-code-quiz
 
-Link to deployed site of my solution to Week 5 : Password Generator Challenge : https://timsbootcamp.github.io/webapi-code-quiz/
+Link to deployed site of my solution to Week 6 : Web API : Code Quiz Challenge : https://timsbootcamp.github.io/webapi-code-quiz/
 
 ![screenshot](screenshot.png)
 
