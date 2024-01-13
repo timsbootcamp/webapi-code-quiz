@@ -77,10 +77,14 @@ function checkAnswer(choiceIndex) {
 
     if (questions[questionNo].answer === userAnswer) {
         answerStatus_div.textContent = "Correct";
+        var audio = new Audio('assets/sfx/correct.wav');
+        audio.play();
         score++;
     }
     else {
         answerStatus_div.textContent = "Incorrect";    
+        var audio = new Audio('assets/sfx/incorrect.wav');
+        audio.play();
 
         if (secondsLeft-subtractTime <0) {
           secondsLeft=0;
