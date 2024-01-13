@@ -20,6 +20,7 @@ let questionNo = 0;
 let secondsLeft = 20;
 let score = 0;
 
+let timerInterval;
 
 
 start_button.addEventListener("click", function() {
@@ -81,8 +82,8 @@ function checkAnswer(choiceIndex) {
     } 
 
     if (secondsLeft >0) {
-      // Make use of timer to wait 2 seconds
-      setTimeout(displayNext, 1000);   
+      // Make use of timer to wait 200 milliseconds
+      setTimeout(displayNext, 200);   
     }
 }
 
@@ -107,10 +108,11 @@ function displayNext() {
 
 function setTime() {
     // Sets interval in variable
-    var timerInterval=setInterval(function() {
+    timerInterval=setInterval(function() {
 
-    if (secondsLeft<=0) {
+    if (secondsLeft<=1) {
       secondsLeft=0;
+      timeUp();
     }
     else
     {
@@ -119,18 +121,20 @@ function setTime() {
 
     time_span_id.textContent = secondsLeft;
 
-    if(secondsLeft <=0) {
-        // Stops execution of action at set interval
-        clearInterval(timerInterval);
-        // alert("Time up!")
-        timeUp();
-      }
+    // if(secondsLeft <=0) {
+    //     // alert("Time up!")
+    //     timeUp();
+    //   }
   
 }, 1000);
 }
   
 
 function timeUp() {
+
+    // Stops execution of action at set interval
+    clearInterval(timerInterval);
+
     // Initialise title to blank
     questionTitle_id.textContent = "";
 
