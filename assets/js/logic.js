@@ -84,6 +84,10 @@ function displayNext() {
         // Display next question to User
         showQuestion();
     }  
+    else
+    {
+      timeUp();
+    }
  }
 
 
