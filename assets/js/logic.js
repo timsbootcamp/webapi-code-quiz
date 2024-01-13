@@ -9,6 +9,7 @@ var answerStatus_div = document.querySelector("#answer-status");
 
 var timee = document.querySelector("#time");
 var endScreen_div = document.querySelector("#end-screen");
+var finalScore_span_id = document.querySelector("#final-score");
 
 
 // Initialise variables
@@ -140,4 +141,6 @@ function timeUp() {
 
     endScreen_div.classList.remove('hide');
     endScreen_div.classList.add('show'); 
+
+    finalScore_span_id.textContent = score;
 }
