@@ -20,7 +20,7 @@ const initials = document.querySelector("#initials");
 
 
 // Other Constants
-const subtractTime = 15;
+const subtractTime = 10;
 
 
 // Initialise variables
