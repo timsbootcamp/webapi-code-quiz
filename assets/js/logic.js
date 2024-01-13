@@ -1,21 +1,22 @@
 // logic.js
 
-var start_button = document.querySelector("#start");
-var startScreen_div = document.querySelector("#start-screen");
-var questions_div = document.querySelector("#questions");
-var questionTitle_id = document.querySelector("#question-title");
-var choices_div = document.querySelector("#choices");
-var answerStatus_div = document.querySelector("#answer-status");
+// Constants for QuerySelectors for index.html
+const start_button = document.querySelector("#start");
+const startScreen_div = document.querySelector("#start-screen");
+const questions_div = document.querySelector("#questions");
+const questionTitle_id = document.querySelector("#question-title");
+const choices_div = document.querySelector("#choices");
+const answerStatus_div = document.querySelector("#answer-status");
 
-var time_span_id = document.querySelector("#time");
-var endScreen_div = document.querySelector("#end-screen");
-var finalScore_span_id = document.querySelector("#final-score");
+const time_span_id = document.querySelector("#time");
+const endScreen_div = document.querySelector("#end-screen");
+const finalScore_span_id = document.querySelector("#final-score");
 
-var submit_button = document.querySelector("#submit");
-var initials = document.querySelector("#initials");
+const submit_button = document.querySelector("#submit");
+const initials = document.querySelector("#initials");
 
 
-// Constants
+// Other Constants
 const subtractTime = 15;
 
 
@@ -127,14 +128,7 @@ function setTime() {
     {
       secondsLeft--;
     }  
-
     time_span_id.textContent = secondsLeft;
-
-    // if(secondsLeft <=0) {
-    //     // alert("Time up!")
-    //     timeUp();
-    //   }
-  
 }, 1000);
 }
   
@@ -162,13 +156,7 @@ function timeUp() {
 
 function addNewScore() {
 
-  let scoresPlayers = [];
-
-  // Load from local storage based on key: 'quiz-players'
-  var storedData = localStorage.getItem('quiz-players');
-  if (storedData) {
-    scoresPlayers = JSON.parse(storedData);
-  }
+  let scoresPlayers = readScoresFromLocalStorage();
 
   // Add new players name and score to array
   scoresPlayers.push({ name: initials.value, score: score });
@@ -176,7 +164,7 @@ function addNewScore() {
   // Sort players in highest to lowest scores ranking
   scoresPlayers.sort((a,b)=>b.score-a.score);
   var jsonScoresPlayers = JSON.stringify(scoresPlayers);
-  localStorage.setItem('quiz-players', jsonScoresPlayers);
+  localStorage.setItem(localStorageQuiz_Key, jsonScoresPlayers);
   window.location.href = 'highscores.html';
 }
 
