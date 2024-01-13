@@ -28,7 +28,7 @@ let score = 0;
 let timerInterval;
 
 submit_button.addEventListener("click", function() {
-    addNewScore();
+    addNewScore(initials.value, score);
 });
   
 
@@ -158,18 +158,5 @@ function timeUp() {
 }
 
 
-function addNewScore() {
-
-  let scoresPlayers = readScoresFromLocalStorage();
-
-  // Add new players name and score to array
-  scoresPlayers.push({ name: initials.value, score: score });
-  
-  // Sort players in highest to lowest scores ranking
-  scoresPlayers.sort((a,b)=>b.score-a.score);
-  var jsonScoresPlayers = JSON.stringify(scoresPlayers);
-  localStorage.setItem(localStorageQuiz_Key, jsonScoresPlayers);
-  window.location.href = 'highscores.html';
-}
 
 

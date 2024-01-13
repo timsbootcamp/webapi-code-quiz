@@ -15,3 +15,20 @@ function readScoresFromLocalStorage() {
 
     return scoresPlayers;
 }
+
+
+function addNewScore(initials, score) {
+
+    let scoresPlayers = readScoresFromLocalStorage();
+  
+    // Add new players name and score to array
+    scoresPlayers.push({ name: initials, score: score });
+    
+    // Sort players in highest to lowest scores ranking
+    scoresPlayers.sort((a,b)=>b.score-a.score);
+    var jsonScoresPlayers = JSON.stringify(scoresPlayers);
+    localStorage.setItem(localStorageQuiz_Key, jsonScoresPlayers);
+    window.location.href = 'highscores.html';
+}
+
+
