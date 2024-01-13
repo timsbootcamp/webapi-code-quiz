@@ -80,8 +80,10 @@ function checkAnswer(choiceIndex) {
                 
     } 
 
-    // Make use of timer to wait 2 seconds
-    setTimeout(displayNext, 1000);
+    if (secondsLeft >0) {
+      // Make use of timer to wait 2 seconds
+      setTimeout(displayNext, 1000);   
+    }
 }
 
 
@@ -129,12 +131,19 @@ function displayNext() {
 
 function setTime() {
     // Sets interval in variable
-    var timerInterval = setInterval(function() {
+    var timerInterval=setInterval(function() {
 
-    secondsLeft--;
+    if (secondsLeft<=0) {
+      secondsLeft=0
+    }
+    else
+    {
+      secondsLeft--;
+    }  
+
     timee.textContent = secondsLeft;
 
-    if(secondsLeft <= 0) {
+    if(secondsLeft <=0) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
         // alert("Time up!")
