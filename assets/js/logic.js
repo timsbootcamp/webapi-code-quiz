@@ -11,6 +11,10 @@ var time_span_id = document.querySelector("#time");
 var endScreen_div = document.querySelector("#end-screen");
 var finalScore_span_id = document.querySelector("#final-score");
 
+var submit_button = document.querySelector("#submit");
+var initials = document.querySelector("#initials");
+
+
 // Constants
 const subtractTime = 15;
 
@@ -22,12 +26,17 @@ let score = 0;
 
 let timerInterval;
 
-
-start_button.addEventListener("click", function() {
-    startQuiz();
+submit_button.addEventListener("click", function() {
+    addNewScore();
 });
   
-  
+
+start_button.addEventListener("click", function() {
+  startQuiz();
+});
+
+
+
 function startQuiz() {
     // Hide #start-screen (ie. Hide title and Start Quiz button)
     startScreen_div.classList.remove('show');
@@ -149,3 +158,26 @@ function timeUp() {
 
     finalScore_span_id.textContent = score;
 }
+
+
+function addNewScore() {
+
+  let scoresPlayers = [];
+
+  // Load from local storage based on key: 'quiz-players'
+  var storedData = localStorage.getItem('quiz-players');
+  if (storedData) {
+    scoresPlayers = JSON.parse(storedData);
+  }
+
+  // Add new players name and score to array
+  scoresPlayers.push({ name: initials.value, score: score });
+  
+  // Sort players in highest to lowest scores ranking
+  scoresPlayers.sort((a,b)=>b.score-a.score);
+  var jsonScoresPlayers = JSON.stringify(scoresPlayers);
+  localStorage.setItem('quiz-players', jsonScoresPlayers);
+  window.location.href = 'highscores.html';
+}
+
+
