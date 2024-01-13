@@ -105,30 +105,6 @@ function displayNext() {
  }
 
 
- function setTime() {
-  // Sets interval in variable
-    var timerInterval = setInterval(function() {
-
-    if (secondsLeft<=0) {
-      secondsLeft=0;
-    }
-    else
-    {
-      secondsLeft--;
-    }
-
-    time_span_id.textContent=secondsLeft;
-
-    if(secondsLeft <= 0) {
-      // Stops execution of action at set interval
-      clearInterval(timerInterval);
-      // alert("Time up!")
-      timeUp();
-    }
-
-  }, 1000);
-}
-
 function setTime() {
     // Sets interval in variable
     var timerInterval=setInterval(function() {
