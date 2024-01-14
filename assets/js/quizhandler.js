@@ -83,8 +83,7 @@ function showQuestion() {
 function checkAnswer(choiceIndex) {
   var userAnswer = questions[questionNo].choices[choiceIndex];
 
-  hrElement = document.createElement('hr');
-  answerLine_div.appendChild(hrElement);
+  answerLine_div.classList.remove('hide');
 
   if (questions[questionNo].answer === userAnswer) {
     // Update display to say "Correct"
@@ -126,8 +125,8 @@ function checkAnswer(choiceIndex) {
 // Display next question
 function displayNext() {
   // Initialise answerStatus
+  answerLine_div.classList.add('hide');
   answerStatus_div.textContent = "";
-  answerLine_div.removeChild(hrElement);
 
   if (questionNo < questions.length - 1) {
     // Increment questionNo variable
@@ -175,8 +174,6 @@ function timeUp() {
 
   // Initialise to blank in case there are buttons currently displayed
   choices.innerHTML = "";
-
-  answerLine_div.classList.add('hide');
 
   // Initialise answerstatus to blank for correct and incorrect
   answerStatus_div.textContent = "";
