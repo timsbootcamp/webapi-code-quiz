@@ -30,15 +30,22 @@ I learnt how to write Javascript and API code that is clean, readable, with comm
 how to play sound so I wired up a sound if the user answered the question correct and another sound if the question
 was answered incorrectly. I also ensured that included material that I learnt in Week 6 (API).
 
+I learnt to structure my project so that it is loosely coupled, there is a separation of concern so quizhandler.js
+holds all the logic for handling the quiz, anything related to highscores is within highscores.js and scores.js
+are core reusable functions shared between quizhandler.js and highscores.js.
 
 > What makes my project stand out? 
 
 It stands out as I have successfully completed the exercise, used good programming practice, in terms of writing clean code.
 I have used appropriate constants and variables that are understandable. There are comments throughout the code
-so it can be understood by any developer.  I have pushed myself continually ensuring my work is of the highest quality. The 
-code is readable and maintainable. 
+so it can be understood by any developer.  
 
-My work is identical to the animated gif that we had to achieve. I noticed in the animated gif, that if a person answered the question incorrectly then minus 15/16 was taken off the time remaining. However, I noticed in index.html, it mentions minus 10 seconds and that is what I implemented.
+My work is identical to the animated gif that we had to achieve. I noticed in the animated gif, that if a person answered the question incorrectly then minus 15/16 was taken off the time remaining. However, I noticed in index.html, it mentions minus 10 seconds and that is what I implemented. 
+
+The demo version (animated gif) that was provided to us, displays the answer 'correct' or 'incorrect' when the next question appears.
+I have made my project to display 'correct' or 'incorrect' to the question being asked !
+
+I have pushed myself continually ensuring my work is of the highest quality. The code is readable and maintainable. 
 
 
 > Technologies Used
