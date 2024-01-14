@@ -1,26 +1,36 @@
 // scores.js
 
-// Constants for QuerySelectors for highscores.html
-const highscores_ol_id = document.querySelector("#highscores");
-const clear_button = document.querySelector("#clear");
+const localStorageQuiz_Key = "quiz-players";
 
 
-// Event Listener for 'Clear Highscores' button click event 
-clear_button.addEventListener("click", function () {
-  clearHighScores();
-});
+// Load from local storage based on key:
+function readScoresFromLocalStorage() {
+  let scoresPlayers = [];
+
+  var storedData = localStorage.getItem(localStorageQuiz_Key);
+  if (storedData) {
+      // load data into array : scoresPlayers 
+      // after constructing the JavaScript value or object described by the string
+      scoresPlayers = JSON.parse(storedData);
+  }
+
+  // return array
+  return scoresPlayers;
+}
 
 
-function loadHighScores() {
-  // Read scores from local storage and store in an array
+// Read from local storage based on key:
+function addNewScore(initials, score) {
   let scoresPlayers = readScoresFromLocalStorage();
 
-  // Parse scoresPlayers array and create li
-  for (let i = 0; i < scoresPlayers.length; i++) {
-    const listItem = document.createElement("li");
-    listItem.textContent = scoresPlayers[i].name + ' - ' + scoresPlayers[i].score;
-    highscores_ol_id.appendChild(listItem);
-  }
+  // Add new players name and score to array
+  scoresPlayers.push({ name: initials, score: score });
+
+  // Sort players in highest to lowest scores ranking
+  scoresPlayers.sort((a, b) => b.score - a.score);
+  var jsonScoresPlayers = JSON.stringify(scoresPlayers);
+  localStorage.setItem(localStorageQuiz_Key, jsonScoresPlayers);
+  window.location.href = 'highscores.html';
 }
 
 
@@ -31,7 +41,7 @@ function clearHighScores() {
 }
 
 
-// Run function to load high scores
-loadHighScores();
+
+
 
 
