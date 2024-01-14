@@ -176,6 +176,8 @@ function timeUp() {
   // Initialise to blank in case there are buttons currently displayed
   choices.innerHTML = "";
 
+  answerLine_div.classList.add('hide');
+
   // Initialise answerstatus to blank for correct and incorrect
   answerStatus_div.textContent = "";
 
