@@ -117,7 +117,7 @@ function checkAnswer(choiceIndex) {
   // displayNext function after 200 milliseconds
   if (secondsLeft > 0) {
     // Make use of timer to wait 200 milliseconds
-    setTimeout(displayNext, 200);
+    setTimeout(displayNext, 1000);
   }
 }
 
@@ -172,6 +172,9 @@ function timeUp() {
   // Initialise title to blank
   questionTitle_id.textContent = "";
 
+  questions_div.classList.add('hide');
+
+  
   // Initialise to blank in case there are buttons currently displayed
   choices.innerHTML = "";
 
