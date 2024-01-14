@@ -1,5 +1,4 @@
-// logic.js
-
+// quizhandler.js
 
 
 // Constants for QuerySelectors for index.html
@@ -20,7 +19,7 @@ const initials = document.querySelector("#initials");
 
 
 // Other Constants
-const subtractTime = 10;
+const subtractTime = 10; // minus 10 seconds from secs remaining if incorrect answer 
 
 
 // Initialise variables
@@ -48,11 +47,9 @@ submit_button.addEventListener("click", function () {
 function startQuiz() {
   // Hide #start-screen (ie. Hide title and Start Quiz button)
   startScreen_div.classList.add('hide');
-  startScreen_div.classList.remove('show');
 
   // Show #questions
   questions_div.classList.remove('hide');
-  questions_div.classList.add('show');
 
   setTimer();
 
@@ -83,6 +80,7 @@ function showQuestion() {
 function checkAnswer(choiceIndex) {
   var userAnswer = questions[questionNo].choices[choiceIndex];
 
+  // Show hr line
   answerLine_div.classList.remove('hide');
 
   if (questions[questionNo].answer === userAnswer) {
@@ -114,18 +112,20 @@ function checkAnswer(choiceIndex) {
     }
   }
 
-  // displayNext function after 200 milliseconds
   if (secondsLeft > 0) {
-    // Make use of timer to wait 200 milliseconds
-    setTimeout(displayNext, 1000);
+    // Make use of timer to wait 1 second, before displaying next question
+    setTimeout(displayNextQuestion, 1000);
   }
 }
 
 
 // Display next question
-function displayNext() {
-  // Initialise answerStatus
+function displayNextQuestion() {
+  
+  // Hide HR line
   answerLine_div.classList.add('hide');
+
+  // Initialise answerStatus
   answerStatus_div.textContent = "";
 
   if (questionNo < questions.length - 1) {
@@ -172,9 +172,9 @@ function timeUp() {
   // Initialise title to blank
   questionTitle_id.textContent = "";
 
+  // Hide Questions Div
   questions_div.classList.add('hide');
 
-  
   // Initialise to blank in case there are buttons currently displayed
   choices.innerHTML = "";
 

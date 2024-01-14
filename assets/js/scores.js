@@ -28,15 +28,24 @@ function addNewScore(initials, score) {
 
   // Sort players in highest to lowest scores ranking
   scoresPlayers.sort((a, b) => b.score - a.score);
+  
+  // Converts the scoresPlayers array to the JSON notation that the value represents
   var jsonScoresPlayers = JSON.stringify(scoresPlayers);
+  
+  // Write to localstorage on key
   localStorage.setItem(localStorageQuiz_Key, jsonScoresPlayers);
+
+  // Goto webpage: 'highscores.html'
   window.location.href = 'highscores.html';
 }
 
 
 // Clear local storage for 'quiz-players'
 function clearHighScores() {
+  // Clear storage based on key 
   localStorage.removeItem(localStorageQuiz_Key);
+
+  // Goto webpage: 'highscores.html'
   window.location.href = 'highscores.html';
 }
 
