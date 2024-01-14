@@ -40,7 +40,10 @@ It stands out as I have successfully completed the exercise, used good programmi
 I have used appropriate constants and variables that are understandable. There are comments throughout the code
 so it can be understood by any developer.  
 
-My work is identical to the animated gif that we had to achieve. I noticed in the animated gif, that if a person answered the question incorrectly then minus 15/16 was taken off the time remaining. However, I noticed in index.html, it mentions minus 10 seconds and that is what I implemented.
+My work is identical to the animated gif that we had to achieve. I noticed in the animated gif, that if a person answered the question incorrectly then minus 15/16 was taken off the time remaining. However, I noticed in index.html, it mentions minus 10 seconds and that is what I implemented. 
+
+The demo version (animated gif) that was provided to us, displays the answer 'correct' or 'incorrect' when the next question appears.
+I have made my project to display 'correct' or 'incorrect' to the question being asked !
 
 I have pushed myself continually ensuring my work is of the highest quality. The code is readable and maintainable. 
 
